@@ -2,3 +2,4 @@
 global using API.Entities;
 global using API.DbContexts;
 global using Bogus;
+global using Microsoft.AspNetCore.Mvc;
