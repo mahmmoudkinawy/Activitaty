@@ -30,6 +30,7 @@ try
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ActivitatyDbContext>();
     await dbContext.Database.MigrateAsync();
+    await Seed.SeedActivities(dbContext);
 }
 catch (Exception ex)
 {
