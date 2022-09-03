@@ -46,4 +46,15 @@ public class ActivitiesController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteActivity([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new DeleteActivityProcess.Request
+        {
+            Id = id
+        }, cancellationToken);
+
+        return NoContent();
+    }
 }
