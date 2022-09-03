@@ -30,4 +30,20 @@ public class ActivitiesController : ControllerBase
 
         return Ok(response);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> EditActivity(
+        [FromRoute] Guid id,
+        [FromBody] ActivityEntity activity,
+        CancellationToken cancellationToken)
+    {
+        activity.Id = id;
+
+        await _mediator.Send(new EditActivityProcess.Request
+        {
+            Activity = activity
+        }, cancellationToken);
+
+        return NoContent();
+    }
 }
