@@ -9,6 +9,10 @@ public static class ApplicationServiceExtenstions
             options.RequireHttpsPermanent = true;
         }).AddXmlDataContractSerializerFormatters();
 
+        services.AddMediatR(Assembly.GetExecutingAssembly());
+
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
         services.AddDbContext<ActivitatyDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 

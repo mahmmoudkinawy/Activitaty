@@ -4,26 +4,23 @@
 [ApiController]
 public class ActivitiesController : ControllerBase
 {
-    private readonly ActivitatyDbContext _context;
+    private readonly IMediator _mediator;
 
-    public ActivitiesController(ActivitatyDbContext context)
+    public ActivitiesController(IMediator mediator)
     {
-        _context = context;
+        _mediator = mediator;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<ActivityEntity>>> GetActivities()
+    public async Task<ActionResult<IReadOnlyList<ActivityEntity>>> GetActivities(CancellationToken cancellationToken)
     {
-        return Ok(await _context.Activities.ToListAsync());
+        var response = await _mediator.Send(new GetAllActivitiesProcess.Request(), cancellationToken);
+        return Ok(response);
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<ActivityEntity>> GetActivity([FromRoute] Guid id)
     {
-        var activity = await _context.Activities.FindAsync(id);
-
-        if (activity is null) return NotFound();
-
-        return Ok(activity);
+        return Ok();
     }
 }
