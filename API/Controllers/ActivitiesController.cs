@@ -12,15 +12,22 @@ public class ActivitiesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<ActivityEntity>>> GetActivities(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetActivities(CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetAllActivitiesProcess.Request(), cancellationToken);
         return Ok(response);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ActivityEntity>> GetActivity([FromRoute] Guid id)
+    public async Task<IActionResult> GetActivity([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        return Ok();
+        var response = await _mediator.Send(new GetActivityProcess.Request
+        {
+            ActivityId = id
+        }, cancellationToken);
+
+        if (response is null) return NotFound();
+
+        return Ok(response);
     }
 }

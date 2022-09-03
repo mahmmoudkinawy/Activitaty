@@ -1,7 +1,10 @@
 ﻿namespace API.Processes.Activities;
-public class GetAllActivitiesProcess
+public class GetActivityProcess
 {
-    public class Request : IRequest<IReadOnlyList<Response>> { }
+    public class Request : IRequest<Response>
+    {
+        public Guid ActivityId { get; set; }
+    }
 
     public class Response
     {
@@ -14,7 +17,7 @@ public class GetAllActivitiesProcess
         public string Venue { get; set; }
     }
 
-    public class Handler : IRequestHandler<Request, IReadOnlyList<Response>>
+    public class Handler : IRequestHandler<Request, Response>
     {
         private readonly ActivitatyDbContext _context;
         private readonly IMapper _mapper;
@@ -25,11 +28,13 @@ public class GetAllActivitiesProcess
             _mapper = mapper;
         }
 
-        public async Task<IReadOnlyList<Response>> Handle(Request request, CancellationToken cancellationToken)
+        public async Task<Response?> Handle(Request request, CancellationToken cancellationToken)
         {
-            var activities = await _context.Activities.ToListAsync(cancellationToken: cancellationToken);
+            var activity = await _context.Activities.FindAsync(new object?[] { request.ActivityId }, cancellationToken: cancellationToken);
 
-            return _mapper.Map<IReadOnlyList<Response>>(activities);
+            if (activity is null) return null;
+
+            return _mapper.Map<Response>(activity);
         }
     }
 
