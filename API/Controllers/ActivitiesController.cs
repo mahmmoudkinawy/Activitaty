@@ -18,7 +18,7 @@ public class ActivitiesController : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetActivity")]
     public async Task<IActionResult> GetActivity([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetActivityProcess.Request
@@ -29,6 +29,22 @@ public class ActivitiesController : ControllerBase
         if (response is null) return NotFound();
 
         return Ok(response);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddActivity(
+        [FromBody] ActivityEntity activity,
+        CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new CreateActivityProcess.Request
+        {
+            Activity = activity
+        }, cancellationToken);
+
+        return CreatedAtRoute(nameof(GetActivity), new
+        {
+            response.Id
+        }, response);
     }
 
     [HttpPut("{id}")]
