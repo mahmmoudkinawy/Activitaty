@@ -7,7 +7,9 @@ public static class ApplicationServiceExtenstions
         services.AddControllers(options =>
         {
             options.RequireHttpsPermanent = true;
-        }).AddXmlDataContractSerializerFormatters();
+        }).AddXmlDataContractSerializerFormatters()
+            .AddFluentValidation(fv =>
+                fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
         services.AddMediatR(Assembly.GetExecutingAssembly());
 

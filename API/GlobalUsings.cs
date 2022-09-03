@@ -9,3 +9,6 @@ global using MediatR;
 global using System.Reflection;
 global using API.Processes.Activities;
 global using AutoMapper;
+global using FluentValidation.AspNetCore;
+global using FluentValidation;
+

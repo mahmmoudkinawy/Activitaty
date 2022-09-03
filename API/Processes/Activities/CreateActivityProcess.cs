@@ -3,8 +3,14 @@ public class CreateActivityProcess
 {
     public class Request : IRequest<Response>
     {
-        public ActivityEntity Activity { get; set; }
+        public string Title { get; set; }
+        public DateTime Date { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+        public string City { get; set; }
+        public string Venue { get; set; }
     }
+
     public class Response
     {
         public Guid Id { get; set; }
@@ -29,12 +35,48 @@ public class CreateActivityProcess
 
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-            _context.Activities.Add(request.Activity);
+            var activityToCreate = _mapper.Map<ActivityEntity>(request);
+
+            _context.Activities.Add(activityToCreate);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return _mapper.Map<Response>(request.Activity);
+            return _mapper.Map<Response>(activityToCreate);
         }
 
+    }
+
+    public class Validator : AbstractValidator<Request>
+    {
+        public Validator()
+        {
+            RuleFor(a => a.Title)
+                .MinimumLength(3)
+                .MaximumLength(255)
+                .NotEmpty();
+
+            RuleFor(a => a.Date)
+                .NotEmpty();
+
+            RuleFor(a => a.Description)
+                .MinimumLength(30)
+                .MaximumLength(3000)
+                .NotEmpty();
+
+            RuleFor(a => a.Category)
+                .MinimumLength(3)
+                .MaximumLength(100)
+                .NotEmpty();
+
+            RuleFor(a => a.City)
+                .MinimumLength(2)
+                .MaximumLength(100)
+                .NotEmpty();
+
+            RuleFor(a => a.Venue)
+                .MinimumLength(3)
+                .MaximumLength(255)
+                .NotEmpty();
+        }
     }
 
     public class Mapper : Profile
@@ -42,6 +84,7 @@ public class CreateActivityProcess
         public Mapper()
         {
             CreateMap<ActivityEntity, Response>();
+            CreateMap<Request, ActivityEntity>();
         }
     }
 

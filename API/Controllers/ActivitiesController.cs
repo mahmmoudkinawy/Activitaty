@@ -33,13 +33,10 @@ public class ActivitiesController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> AddActivity(
-        [FromBody] ActivityEntity activity,
+        [FromBody] CreateActivityProcess.Request request,
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(new CreateActivityProcess.Request
-        {
-            Activity = activity
-        }, cancellationToken);
+        var response = await _mediator.Send(request, cancellationToken);
 
         return CreatedAtRoute(nameof(GetActivity), new
         {
@@ -50,15 +47,12 @@ public class ActivitiesController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> EditActivity(
         [FromRoute] Guid id,
-        [FromBody] ActivityEntity activity,
+        [FromBody] EditActivityProcess.Request request,
         CancellationToken cancellationToken)
     {
-        activity.Id = id;
+        request.Id = id;
 
-        await _mediator.Send(new EditActivityProcess.Request
-        {
-            Activity = activity
-        }, cancellationToken);
+        await _mediator.Send(request, cancellationToken);
 
         return NoContent();
     }
