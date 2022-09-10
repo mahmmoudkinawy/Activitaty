@@ -12,6 +12,7 @@ import { ActivitiesService } from 'src/app/services/activities.service';
 export class ActivitiesListComponent implements OnInit, OnDestroy {
   private readonly dispose$ = new Subject();
   activities: Activity[] = [];
+  activity: Activity | null = null;
 
   constructor(private activitiesService: ActivitiesService) {}
 

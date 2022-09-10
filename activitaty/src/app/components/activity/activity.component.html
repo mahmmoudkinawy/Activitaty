@@ -1,0 +1,10 @@
+<p-fieldset *ngIf="activity" [legend]="activity.category">
+    <h3>{{activity.title | titlecase}}</h3>
+    <p>{{activity.date | date}}</p>
+    <p>{{activity.city}}, {{activity.venue}}</p>
+    <p-tag [value]="activity.category"></p-tag>
+
+    <div class="flex justify-content-end flex-wrap card-container">
+        <button pButton type="button" label="View"></button>
+    </div>
+</p-fieldset>

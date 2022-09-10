@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { PrimengModule } from './shared/primeng.module';
 import { HeaderComponent } from './components/header/header.component';
 import { ActivitiesListComponent } from './components/activities-list/activities-list.component';
+import { ActivityComponent } from './components/activity/activity.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ActivitiesListComponent],
+  declarations: [AppComponent, HeaderComponent, ActivitiesListComponent, ActivityComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

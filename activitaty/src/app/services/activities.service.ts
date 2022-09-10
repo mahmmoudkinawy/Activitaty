@@ -13,4 +13,8 @@ export class ActivitiesService {
   getActivities() {
     return this.http.get<Activity[]>(`${environment.apiUrl}/activities`);
   }
+
+  getActivity(id: string) {
+    return this.http.get<Activity>(`${environment.apiUrl}/activities/${id}`);
+  }
 }
