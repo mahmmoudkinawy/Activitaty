@@ -5,11 +5,11 @@ import { Activity } from 'src/app/models/activity';
 import { ActivitiesService } from 'src/app/services/activities.service';
 
 @Component({
-  selector: 'app-activities-list',
-  templateUrl: './activities-list.component.html',
-  styleUrls: ['./activities-list.component.scss'],
+  selector: 'app-activity-home-dashboard',
+  templateUrl: './activity-home-dashboard.component.html',
+  styleUrls: ['./activity-home-dashboard.component.scss'],
 })
-export class ActivitiesListComponent implements OnInit, OnDestroy {
+export class ActivityHomeDashboardComponent implements OnInit, OnDestroy {
   private readonly dispose$ = new Subject();
   activities: Activity[] = [];
   activity: Activity | null = null;

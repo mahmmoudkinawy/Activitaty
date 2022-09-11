@@ -5,13 +5,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { PrimengModule } from './shared/primeng.module';
+
 import { HeaderComponent } from './components/header/header.component';
-import { ActivitiesListComponent } from './components/activities-list/activities-list.component';
 import { ActivityComponent } from './components/activity/activity.component';
+import { ActivityCardComponent } from './components/activity-card/activity-card.component';
+import { ActivityHomeDashboardComponent } from './components/activity-home-dashboard/activity-home-dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ActivitiesListComponent, ActivityComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ActivityHomeDashboardComponent,
+    ActivityComponent,
+    ActivityCardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
