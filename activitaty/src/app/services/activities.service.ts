@@ -18,6 +18,10 @@ export class ActivitiesService {
     return this.http.get<Activity>(`${environment.apiUrl}/activities/${id}`);
   }
 
+  updateActivity(id: string, activity: Activity) {
+    return this.http.put(`${environment.apiUrl}/activities/${id}`, activity);
+  }
+
   deleteActivity(id: string) {
     return this.http.delete(`${environment.apiUrl}/activities/${id}`);
   }

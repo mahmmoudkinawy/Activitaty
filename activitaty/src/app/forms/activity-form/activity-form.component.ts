@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+
+import { Activity } from 'src/app/models/activity';
 
 @Component({
   selector: 'app-activity-form',
@@ -6,9 +8,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./activity-form.component.scss'],
 })
 export class ActivityFormComponent {
+  @Output() sendActivityToParent = new EventEmitter<Activity>();
   @Output() formMode = new EventEmitter<boolean>();
+  @Input() activity: Activity | null = null;
 
   formModeUpdate() {
     this.formMode.emit(false);
+  }
+
+  onSendActivityToParent() {
+    this.sendActivityToParent.emit(this.activity!);
   }
 }

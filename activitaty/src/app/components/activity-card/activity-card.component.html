@@ -19,7 +19,7 @@
             label="Edit" 
             icon="pi pi-credit-card"
             styleClass="p-button-warning"
-            (click)="editMode = true"></p-button>
+            (click)="editMode = true" ></p-button>
         <p-button 
             (click)="activity = null" 
             label="Cancel" 
@@ -31,5 +31,8 @@
 </p-card>
 
 <ng-container *ngIf="editMode">
-    <app-activity-form (formMode)="formMode($event)"></app-activity-form>
+    <app-activity-form 
+        (sendActivityToParent)="getActivity($event)" 
+        [activity]="activity" 
+        (formMode)="formMode($event)"></app-activity-form>
 </ng-container>

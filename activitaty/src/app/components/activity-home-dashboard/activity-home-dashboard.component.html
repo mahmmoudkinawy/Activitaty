@@ -8,6 +8,8 @@
         </ng-container>
     </div>
     <div class="col-6" *ngIf="activity">
-        <app-activity-card [activity]="activity"></app-activity-card>
+        <app-activity-card 
+            (sendActivityToParent)="updateActivity($event)" 
+            [activity]="activity"></app-activity-card>
     </div>
 </div>

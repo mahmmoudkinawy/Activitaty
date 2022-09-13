@@ -27,6 +27,13 @@ export class ActivityHomeDashboardComponent implements OnInit, OnDestroy {
       .subscribe((activity) => (this.activity = activity));
   }
 
+  updateActivity(activity: Activity) {
+    this.activitiesService
+      .updateActivity(activity.id, activity)
+      .pipe(takeUntil(this.dispose$))
+      .subscribe(() => this.loadActivities());
+  }
+
   deleteActivity(id: string) {
     this.activitiesService
       .deleteActivity(id)

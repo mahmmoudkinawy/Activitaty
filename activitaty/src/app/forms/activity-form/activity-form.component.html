@@ -1,17 +1,18 @@
-<form>
-    <input type="text" pInputText placeholder="Title">
-    <textarea pInputTextarea placeholder="Description"></textarea>
-    <input type="text" pInputText placeholder="Category">
-    <input type="text" pInputText placeholder="Date">
-    <input type="text" pInputText placeholder="City">
-    <input type="text" pInputText placeholder="Venue">
+<form *ngIf="activity">
+    <input type="text" name="title" [(ngModel)]="activity.title" pInputText placeholder="Title">
+    <textarea pInputTextarea  name="description" [(ngModel)]="activity.description" placeholder="Description" rows="6"></textarea>
+    <input type="text" name="category" [(ngModel)]="activity.category" pInputText placeholder="Category">
+    <input type="text" name="date" [(ngModel)]="activity.date" pInputText placeholder="Date">
+    <input type="text" name="city" [(ngModel)]="activity.city" pInputText placeholder="City">
+    <input type="text" name="venue" [(ngModel)]="activity.venue" pInputText placeholder="Venue">
 
     <br>
 
     <div class="p-3">
         <p-button 
             label="Save" 
-            icon="pi pi-save"></p-button>
+            icon="pi pi-save"
+            (click)="onSendActivityToParent()"></p-button>
         <button 
             pButton 
             [style]="{'margin-left': '.5em'}"
