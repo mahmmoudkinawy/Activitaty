@@ -8,8 +8,8 @@ import { Activity } from 'src/app/models/activity';
   styleUrls: ['./activity-card.component.scss'],
 })
 export class ActivityCardComponent {
-  editMode = false;
   @Input() activity: Activity | null = null;
+  editMode = false;
 
   formMode(editMode: boolean) {
     this.editMode = editMode;

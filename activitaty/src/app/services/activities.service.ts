@@ -17,4 +17,8 @@ export class ActivitiesService {
   getActivity(id: string) {
     return this.http.get<Activity>(`${environment.apiUrl}/activities/${id}`);
   }
+
+  deleteActivity(id: string) {
+    return this.http.delete(`${environment.apiUrl}/activities/${id}`);
+  }
 }

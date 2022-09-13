@@ -8,10 +8,15 @@ import { Activity } from 'src/app/models/activity';
   styleUrls: ['./activity.component.scss'],
 })
 export class ActivityComponent {
-  @Output() activityToParent = new EventEmitter<Activity>();
+  @Output() sendActivityToParent = new EventEmitter<Activity>();
+  @Output() sendActivityIdToParent = new EventEmitter<string>();
   @Input() activity: Activity | null = null;
 
   onSendActivityToParent() {
-    this.activityToParent.emit(this.activity!);
+    this.sendActivityToParent.emit(this.activity!);
+  }
+
+  onSendActivityIdToParent() {
+    this.sendActivityIdToParent.emit(this.activity?.id);
   }
 }

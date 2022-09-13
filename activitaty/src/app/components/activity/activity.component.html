@@ -5,6 +5,18 @@
     <p-tag [value]="activity.category"></p-tag>
 
     <div class="flex justify-content-end flex-wrap card-container">
-        <button pButton type="button" label="View" (click)="onSendActivityToParent()"></button>
+        <button 
+            (click)="onSendActivityToParent()" 
+            pButton
+            type="button"
+            label="Details" 
+            class="p-button-info"></button>
+        <button 
+            pButton 
+            type="button" 
+            label="Delete"
+            class="p-button-danger"
+            [style]="{'margin-left': '.5em'}"  
+            (click)="onSendActivityIdToParent()"></button>
     </div>
 </p-fieldset>
