@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { ActivityCardComponent } from './components/activity-card/activity-card.component';
 import { ActivityHomeDashboardComponent } from './components/activity-home-dashboard/activity-home-dashboard.component';
+import { ActivityFormComponent } from './forms/activity-form/activity-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ActivityHomeDashboardComponent } from './components/activity-home-dashb
     ActivityHomeDashboardComponent,
     ActivityComponent,
     ActivityCardComponent,
+    ActivityFormComponent,
   ],
   imports: [
     BrowserModule,

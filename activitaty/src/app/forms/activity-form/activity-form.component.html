@@ -1,0 +1,24 @@
+<form>
+    <input type="text" pInputText placeholder="Title">
+    <textarea pInputTextarea placeholder="Description"></textarea>
+    <input type="text" pInputText placeholder="Category">
+    <input type="text" pInputText placeholder="Date">
+    <input type="text" pInputText placeholder="City">
+    <input type="text" pInputText placeholder="Venue">
+
+    <br>
+
+    <div class="p-3">
+        <p-button 
+            label="Save" 
+            icon="pi pi-save"></p-button>
+        <button 
+            pButton 
+            [style]="{'margin-left': '.5em'}"
+            type="button" 
+            label="Cancel" 
+            (click)="formModeUpdate()"
+            class="p-button-danger">
+        </button>
+    </div>
+</form>

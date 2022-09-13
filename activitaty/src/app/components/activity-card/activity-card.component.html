@@ -1,23 +1,35 @@
 <p-card 
-    *ngIf="activity" 
+    *ngIf="activity && !editMode" 
     [header]="activity.title | titlecase" 
     [subheader]="activity.category"
     [style]="{width: '360px'}" 
     styleClass="p-card-shadow">
     <ng-template [pTemplate]="activity.title">
-        <img width="360px" height="200px" [alt]="activity.title" [src]="'../../assets/category-images/film.jpg'">
+        <img 
+            width="360px" 
+            height="200px" 
+            [alt]="activity.title" 
+            [src]="'../../assets/category-images/film.jpg'">
     </ng-template>
     <p>
         {{activity.description}}
     </p>
     <ng-template pTemplate="footer">
-        <p-button label="Save" icon="pi pi-check"></p-button>
+        <p-button 
+            label="Edit" 
+            icon="pi pi-credit-card"
+            styleClass="p-button-warning"
+            (click)="editMode = true"></p-button>
         <p-button 
             (click)="activity = null" 
             label="Cancel" 
             icon="pi pi-times" 
-            styleClass="p-button-secondary" 
+            styleClass="p-button-danger"
             [style]="{'margin-left': '.5em'}">
         </p-button>
     </ng-template>
 </p-card>
+
+<ng-container *ngIf="editMode">
+    <app-activity-form (formMode)="formMode($event)"></app-activity-form>
+</ng-container>
