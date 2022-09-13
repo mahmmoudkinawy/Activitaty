@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
+import { MessageService } from 'primeng/api';
+
 import { Activity } from 'src/app/models/activity';
 import { ActivitiesService } from 'src/app/services/activities.service';
 
@@ -8,13 +10,17 @@ import { ActivitiesService } from 'src/app/services/activities.service';
   selector: 'app-activity-home-dashboard',
   templateUrl: './activity-home-dashboard.component.html',
   styleUrls: ['./activity-home-dashboard.component.scss'],
+  providers: [MessageService],
 })
 export class ActivityHomeDashboardComponent implements OnInit, OnDestroy {
   private readonly dispose$ = new Subject();
   activities: Activity[] = [];
   activity: Activity | null = null;
 
-  constructor(private activitiesService: ActivitiesService) {}
+  constructor(
+    private activitiesService: ActivitiesService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.loadActivities();
@@ -31,14 +37,28 @@ export class ActivityHomeDashboardComponent implements OnInit, OnDestroy {
     this.activitiesService
       .updateActivity(activity.id, activity)
       .pipe(takeUntil(this.dispose$))
-      .subscribe(() => this.loadActivities());
+      .subscribe(() => {
+        this.messageService.add({
+          key: 'activity',
+          severity: 'success',
+          detail: 'Activity updated successfully',
+        });
+        this.loadActivities();
+      });
   }
 
   deleteActivity(id: string) {
     this.activitiesService
       .deleteActivity(id)
       .pipe(takeUntil(this.dispose$))
-      .subscribe(() => this.loadActivities());
+      .subscribe(() => {
+        this.messageService.add({
+          key: 'activity',
+          severity: 'success',
+          detail: 'Activity deleted successfully',
+        });
+        this.loadActivities();
+      });
   }
 
   private loadActivities() {

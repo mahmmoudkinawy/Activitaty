@@ -1,6 +1,6 @@
-<form *ngIf="activity">
+<form *ngIf="activity" >
     <input type="text" name="title" [(ngModel)]="activity.title" pInputText placeholder="Title">
-    <textarea pInputTextarea  name="description" [(ngModel)]="activity.description" placeholder="Description" rows="6"></textarea>
+    <textarea pInputTextarea name="description" [(ngModel)]="activity.description" placeholder="Description" rows="6"></textarea>
     <input type="text" name="category" [(ngModel)]="activity.category" pInputText placeholder="Category">
     <input type="text" name="date" [(ngModel)]="activity.date" pInputText placeholder="Date">
     <input type="text" name="city" [(ngModel)]="activity.city" pInputText placeholder="City">

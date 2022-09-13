@@ -7,6 +7,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {ToastModule} from 'primeng/toast';
 
 const primeNgComponents = [
   CardModule,
@@ -16,6 +17,7 @@ const primeNgComponents = [
   TagModule,
   InputTextModule,
   InputTextareaModule,
+  ToastModule,
 ];
 
 @NgModule({
