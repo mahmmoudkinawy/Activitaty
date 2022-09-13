@@ -5,7 +5,7 @@
     [style]="{width: '360px'}" 
     styleClass="p-card-shadow">
     <ng-template [pTemplate]="activity.title">
-        <img [alt]="activity.title" src="`../assets/category-images/${activity.category}.jpg`">
+        <img width="360px" height="200px" [alt]="activity.title" [src]="'../../assets/category-images/film.jpg'">
     </ng-template>
     <p>
         {{activity.description}}
